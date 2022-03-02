@@ -1,0 +1,54 @@
+---
+title: "Week 2 Assignment"
+author: "Dr.Nguyen"
+date: '2022-03-02'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+
+Create a web page using R Markdown that features a map created with Leaflet. 
+
+Host your webpage on either GitHub Pages, RPubs, or NeoCities.
+
+Your webpage must contain the date that you created the document, and it must contain a map created with Leaflet. We would love to see you show off your creativity! 
+
+### Review criteria
+
+The rubric contains the following two questions:
+
+1. Does the web page feature a date and is this date less than two months before the date that you're grading this assignment?
+
+2. Does the web page feature an interactive map that appears to have been created with Leaflet?
+
+## My Leaflet map
+### Some universities in Hanoi
+#### Created on 02 March 2022
+
+
+```{r, echo=FALSE}
+library(leaflet)
+myflag <- makeIcon(
+  iconUrl = "https://cdn.britannica.com/41/4041-004-D051B135/Flag-Vietnam.jpg",
+  iconWidth = 31*215/230, iconHeight = 25,
+  iconAnchorX = 31*215/230/2, iconAnchorY = 16
+)
+uniSites <- c(
+  "<a href='http://www.ftu.edu.vn/'>Foreign Trade University</a>",
+  "<a href='https://www.hust.edu.vn/'>Hanoi University of Science & Technology</a>",
+  "<a href='https://hmu.edu.vn/'>Hanoi Medical University</a>"
+)
+uniLatLong <- data.frame(
+  lat = c(21.023033, 21.0070253, 21.0032664),
+  lng = c(105.803243, 105.840942, 105.8284147))
+
+uniLatLong %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon = myflag, popup = uniSites)
+```
+
